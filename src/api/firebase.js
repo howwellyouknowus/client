@@ -1,18 +1,17 @@
-// import 'firebase/firestore';
 
-const firebase = require('firebase/app');
-require('firebase/firestore');
-require('dotenv').config()
+import firebase from 'firebase'
 
-const config = {
-    apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
-    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
-    projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+import 'firebase/firestore'
+
+let config = {
+    apiKey: "AIzaSyBMHH8bPe7-A69cyI-QrBQFTuJBMOl_xhU",
+    authDomain: "howwellyouknowus.firebaseapp.com",
+    databaseURL: "https://howwellyouknowus.firebaseio.com",
+    projectId: "howwellyouknowus",
+    storageBucket: "howwellyouknowus.appspot.com",
+    messagingSenderId: "493616838925"
 };
+  
+let db = firebase.initializeApp(config);
 
-firebase.initializeApp(config);
-const db = firebase.firestore()
 export default db
