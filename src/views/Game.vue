@@ -6,7 +6,7 @@
         <div>
           <div class="card bg-light text-black text-center p-3">
             <blockquote class="blockquote mb-0">
-              <h3> {{activeQuestion.Pertanyaan}} </h3>
+              <h3> {{activeQuestion.pertanyaan}} </h3>
             </blockquote>
           </div>
           <br>
@@ -77,10 +77,10 @@ export default {
     db.collection("rooms")
       .doc(this.id)
       .onSnapshot(doc => {
-        console.log("masuk ke room game")
         this.id = doc.id;
         let data = doc.data();
         this.name = data.name;
+        console.log("masuk ke room game", data)
         this.author = data.author;
         this.players = data.users;
         this.status = data.status;
@@ -98,7 +98,7 @@ export default {
   methods: {
     getQuestion() {
       console.log("masuk ke get questions")
-      db.collection("question").onSnapshot(querySnapshot => {
+      db.collection("Question").onSnapshot(querySnapshot => {
         console.log("hasil get question", querySnapshot);
         const data = [];
         querySnapshot.docs.forEach(doc => {
@@ -119,7 +119,7 @@ export default {
     submitAnswer(payload) {
       console.log("masuk answer question >>>>", payload)
       let obj;
-      if (payload.Jawaban.indexOf(this.answer) !== -1) {
+      if (payload.jawaban.indexOf(this.answer) !== -1) {
         this.startIndex += 1;
         this.currentPlayer.score += 10;
         let payload = {
