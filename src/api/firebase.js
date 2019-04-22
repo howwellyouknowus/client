@@ -12,6 +12,6 @@ let config = {
     messagingSenderId: "493616838925"
 };
   
-let db = firebase.initializeApp(config);
-
-export default db
+firebase.initializeApp(config);
+const db = firebase.firestore();
+export default db;
