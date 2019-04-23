@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form @submit="nameSubmit(name)">
+            <form @submit.prevent="nameSubmit(name)">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" id="recipient-name" v-model="name">
@@ -32,7 +32,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click.prevent="nameSubmit(name)" data-dismiss=modal>Submit</button>
+            <button type="button" class="btn btn-primary" @click.prevent="nameSubmit(name)" data-dismiss="modal">Submit</button>
           </div>
         </div>
       </div>
@@ -85,6 +85,11 @@ export default {
       localStorage.setItem('id', Math.round(Math.random()*8999999)+1000000)
       this.$router.push('/rooms')
       this.name = ''
+      $('#exampleModal').modal('hide');
+    },
+    roomSubmit(){
+      this.$router.push('/rooms');
+      $('#exampleModal').modal('hide');
     }
   }
 };

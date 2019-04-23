@@ -234,6 +234,7 @@ export default {
             console.log("after looping ===", players)
             let payload = {
               users: players,
+              usersId: Object.keys(players),
               status: 'ready'
             }
             this.updateRoom(payload)
