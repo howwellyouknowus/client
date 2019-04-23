@@ -32,7 +32,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click.prevent="nameSubmit(name)">Submit</button>
+            <button type="button" class="btn btn-primary" @click.prevent="nameSubmit(name)" data-dismiss=modal>Submit</button>
           </div>
         </div>
       </div>
@@ -56,7 +56,9 @@ export default {
   },
   methods: {
     nameSubmit(name) {
-      localStorage.setItem('player', name)
+      localStorage.setItem('username', name)
+      localStorage.setItem('id', Math.round(Math.random()*8999999)+1000000)
+      this.$router.push('/rooms')
       this.name = ''
     }
   }
