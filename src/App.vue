@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/rooms">Rooms</router-link>
-    </div>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1" style="text-align:center">How Well You Know Hacktiv8 Classic Fox</span>
+    </nav>
     <router-view/>
   </div>
 </template>
