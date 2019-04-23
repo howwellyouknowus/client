@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button
+    <button v-if="register"
       type="button"
       class="btn btn-primary"
       data-toggle="modal"
@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form @submit="nameSubmit(name)">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" id="recipient-name" v-model="name">
@@ -37,6 +37,26 @@
         </div>
       </div>
     </div>
+
+    <div v-if="!register">
+      <button 
+      type="button"
+      class="btn btn-primary"
+      @click="roomSubmit()"
+      >Go To Room</button>
+    </div>
+    
+
+    <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
+      <iframe
+        frameborder="0"
+        height="680"
+        width="100%"
+        src="https://www.youtube.com/embed/o8sU1XEMBqo?playlist=o8sU1XEMBqo&loop=1&autoplay=1&controls=0&showinfo=0&autohide=1"
+        allow="autoplay; fullscreen"
+      ></iframe>
+    </div>
+    
   </div>
 </template>
 
@@ -48,11 +68,16 @@ export default {
   name: "home",
   data() {
     return {
-      name: '',
-    }
+      register: true, 
+      name: "",
+    };
   },
   mounted() {
-    
+    if(localStorage.getItem('username')) {
+      this.register = false
+    } else {
+      this.register = true
+    }
   },
   methods: {
     nameSubmit(name) {
