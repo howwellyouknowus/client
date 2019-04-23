@@ -21,5 +21,11 @@ yarn-error.log*
 *.sw?
 
 node_modules
+<<<<<<< HEAD
 firebase
 .env
+=======
+App.vue
+Home.vue
+api
+>>>>>>> room still progress
