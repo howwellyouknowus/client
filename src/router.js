@@ -22,9 +22,20 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
+<<<<<<< HEAD
       path: '/games/:id',
       name: 'game',
       component: () => import('./views/Game.vue'),
+=======
+      path: '/rooms',
+      name: 'listRoom',
+      component: () => import(/* webpackChunkName: "about" */ './views/Rooms.vue'),
+    },
+    {
+      path: '/rooms/:id',
+      name: 'room',
+      component: () => import(/* webpackChunkName: "about" */ './views/Room.vue'),
+>>>>>>> room still progress
     },
     {
       path: '/rooms',
