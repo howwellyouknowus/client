@@ -3,19 +3,20 @@
     <div class="card">
       <h5 class="card-header">{{ room.name }}</h5>
       <div class="card-body">
-        <h5 class="card-title text-left">Host: @{{ room.author.username }}</h5>
-        <p class="card-text text-left">
-          <ul>
+        <h2 class="card-title"><span class="badge badge-primary">Host: @{{ room.author ? room.author.username : ''}}</span></h2>
+        <p class="card-text">
+          <strong>Members:</strong>
+          <ul class="list-unstyled">
             <li
               v-for="(user, index) in room.users"
               :key="index">
-                @{{ user.username }}
+                <span :class="id === index ? 'badge badge-secondary' : '' ">@{{ user.username }} {{  }}</span>
               </li>
           </ul>
         </p>
-        <router-link :to="`/games/${roomId}`">
+        <router-link :to="room.usersId && room.usersId.length > 1 ? `/games/${roomId}` : `/rooms/${roomId}`">
           <button
-            v-show="room.author.id === id"
+            v-show="room.author ? room.author.id === id : false"
             type="button"
             class="btn btn-success mr-2"
             @click="changeStatus">
@@ -73,16 +74,26 @@ export default {
         });
     },
     changeStatus() {
-      db.collection('rooms')
-        .doc(this.roomId).update({
-          status: 'playing',
-        })
-        .then(() => {
-          console.log('playing');
-        })
-        .catch((error) => {
-          console.error('ERROR ==> ', error);
+      if(this.room.usersId.length > 1) {
+        db.collection('rooms')
+          .doc(this.roomId).update({
+            status: 'playing',
+          })
+          .then(() => {
+            console.log('playing');
+          })
+          .catch((error) => {
+            console.error('ERROR ==> ', error);
+          });
+      } else {
+        Swal.fire({
+          position: 'center',
+          type: 'error',
+          title: 'Total player minimal 2',
+          showConfirmButton: false,
+          timer: 1500,
         });
+      }
     },
   },
 };
