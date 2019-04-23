@@ -37,7 +37,7 @@
     <div class="row">
       <div class="col-6 offset 3">
         <div v-for="(player,index) in players" :key="index">
-          <p>{{player.name}}</p>
+          <p>{{player.username}}</p>
           <div class="progress" >
 
             <div
