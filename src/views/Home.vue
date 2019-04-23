@@ -1,5 +1,14 @@
 <template>
   <div class="home">
+    <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
+      <iframe
+        frameborder="0"
+        height="680"
+        width="100%"
+        src="https://www.youtube.com/embed/o8sU1XEMBqo?playlist=o8sU1XEMBqo&loop=1&autoplay=1&controls=0&showinfo=0&autohide=1"
+        allow="autoplay; fullscreen"
+      ></iframe>
+    </div>
     <button
       type="button"
       class="btn btn-primary"
@@ -48,12 +57,10 @@ export default {
   name: "home",
   data() {
     return {
-      name: '',
-    }
+      name: "",
+    };
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     nameSubmit(name) {
       localStorage.setItem('username', name)
