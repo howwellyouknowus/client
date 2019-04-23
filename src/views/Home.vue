@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form @submit="nameSubmit(name)">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" id="recipient-name" v-model="name">
@@ -37,6 +37,16 @@
         </div>
       </div>
     </div>
+
+    <div v-if="!register">
+      <button 
+      type="button"
+      class="btn btn-primary"
+      @click="roomSubmit()"
+      >Go To Room</button>
+    </div>
+    
+
     <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
       <iframe
         frameborder="0"
@@ -46,11 +56,7 @@
         allow="autoplay; fullscreen"
       ></iframe>
     </div>
-
-    <button v-if="!register"
-      type="button"
-      class="btn btn-primary"
-    >Go To Room</button>
+    
   </div>
 </template>
 
@@ -66,7 +72,13 @@ export default {
       name: "",
     };
   },
-  mounted() {},
+  mounted() {
+    if(localStorage.getItem('username')) {
+      this.register = false
+    } else {
+      this.register = true
+    }
+  },
   methods: {
     nameSubmit(name) {
       localStorage.setItem('username', name)
