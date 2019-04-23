@@ -11,12 +11,12 @@
         <div class="card-body">
           <p class="card-text">Host: @{{ room.data().author.username }}</p>
           <p class="card-text">Total Player: {{ room.data().usersId.length }}</p>
-          <p class="card-text">Status: {{ room.data().status }}</p>
-          <router-link :to="`/rooms/${room.id}`">
+          <p class="card-text">Status: <span :class="`badge badge-${room.data().status === 'ready' ? 'success' : 'danger'}`">{{ room.data().status.toUpperCase() }}</span></p>
+          <router-link :to="room.data().status === 'ready' ? `/rooms/${room.id}` : '/rooms'">
             <button
               type="button"
               class="btn btn-light"
-              @click="joinRoom(room.id)">
+              @click="joinRoom(room)">
                 Join Room
             </button>
           </router-link>
@@ -47,8 +47,18 @@ export default {
     };
   },
   methods: {
-    joinRoom(id) {
-      this.$emit('join-room', id);
+    joinRoom(room) {
+      if (room.data().status === 'ready') {
+        this.$emit('join-room', room.id);
+      } else {
+        Swal.fire({
+          position: 'center',
+          type: 'error',
+          title: 'Room currently in game',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     },
   },
 };
