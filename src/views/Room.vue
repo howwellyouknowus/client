@@ -10,7 +10,7 @@
             <li
               v-for="(user, index) in room.users"
               :key="index">
-                <span :class="id === index ? 'badge badge-secondary' : '' ">@{{ user.username }} {{  }}</span>
+                <span :class="id === index ? 'badge badge-secondary' : '' ">@{{ user.username }}</span>
               </li>
           </ul>
         </p>
